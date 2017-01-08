@@ -17,3 +17,25 @@ Has access to all data.
 Has ability to post all data.
 Has ability to edit all data.(maybe)
 Display data like billings, patients seen in a graph. 
+
+DATABASE
+DROP TABLE if exists Paystubs (deleted old database)
+
+CREATE TABLE IF NOT EXSIST HoursPortland (
+	id serial primary key,
+	pts text not null,
+	hourstotal integer not null,
+	clinichours integer not null,
+	target integer not null,
+	visitsperhour integer not null,
+	target2 integer not null
+)
+
+{
+	"pts" : "frank",
+	"hourstotal" : "2333",
+	"clinichours" :"23",
+	"target": "23" ,
+	"visitsperhour" :  "2",
+	"target2" : "43"
+}

@@ -23,36 +23,38 @@ class ProfilePage extends React.Component {
 
 
   render() {
-    const eachColumn = this.props.employees.map((data, index) => {
+    const eachColumn      = this.props.employees.map((data, index) => {
       console.log(data.employee)
-      const benefits = data.benefits;
-      const employee = data.employee;
-      const hourly   = data.hourly;
-      const overtime = data.overtime;
-      const total    = data.total;
-      const hourperweek = data.hourperweek;
+      const pts           = data.pts;
+      const hourstotal    = data.hourstotal;
+      const clinichours   = data.clinichours;
+      const target        = data.target;
+      const target2       = data.target2;
+      const visitsperhour = data.visitsperhour;
+      
       return (
         <tr key={index}>
-          <td>{employee}</td>
-          <td>{benefits}</td>
-          <td>{overtime}</td>
-          <td>{overtime}</td>
-          <td>{overtime}</td>
-          <td>{overtime}</td>
+          <td>{pts}</td>
+          <td>{hourstotal}</td>
+          <td>{clinichours}</td>
+          <td>{target}</td>
+          <td>{visitsperhour}</td>
+          <td>{target2}</td>
         </tr>
         );
     });
     return (
       <div className="container">          
+        <h1>Admin View</h1>
         <table className="table">
           <thead>
             <tr>
-              <th>Firstname</th>
-              <th>Lastname</th>
-              <th>Email</th>
-              <th>Email</th>
-              <th>Email</th>
-              <th>Email</th>
+              <th>PT's</th>
+              <th>Hours Total</th>
+              <th>Clinic Hours</th>
+              <th>Target</th>
+              <th>Visits Per Hour</th>
+              <th>Target Results +/-</th>
             </tr>
           </thead>
           <tbody>
@@ -60,23 +62,28 @@ class ProfilePage extends React.Component {
           </tbody>
         </table>
         <form>
-          Employee:<br/>
-          <input type="text" name="firstname"/>
+          PT:<br/>
+          <select name="pts">
+            <option value="Long">Long</option>
+            <option value="Gromont">Gromont</option>
+            <option value="Tina">Tina</option>
+            <option value="Liz">Liz</option>
+          </select>
           <br/>
-          Hourly:<br/>
-          <input type="text" name="lastname"/>
+          Hours Total:<br/>
+          <input type="text" name="hours_total"/>
            <br/>
-          Hours Per Week:<br/>
-          <input type="text" name="lastname"/>
+          Clinic Hours:<br/>
+          <input type="text" name="clinc_hours"/>
            <br/>
-          Benefits:<br/>
-          <input type="text" name="lastname"/>
+          Target:<br/>
+          <input type="text" name="target"/>
            <br/>
-          Overtime:<br/>
-          <input type="text" name="lastname"/>
+          Actual Patients per Clinic Hour:<br/>
+          <input type="text" name="actual"/>
            <br/>
-          Total:<br/>
-          <input type="text" name="lastname"/>
+          Target Results +/- :<br/>
+          <input type="text" name="target2"/>
           <input type="submit" name="submit" onClick={this.submitData}/>
         </form>
       </div>

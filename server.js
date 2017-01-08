@@ -34,7 +34,7 @@ app.get('/profile', stormpath.getUser, function (req, res) {
 
  });
 app.get('/userdata', (req, res) => {
-  knex('paystubs').select('*').then((data) => {
+  knex('hoursportland').select('*').then((data) => {
     console.log('server', data);
     return res.status(200).json({data})
   })
@@ -42,14 +42,15 @@ app.get('/userdata', (req, res) => {
 app.post('/userdata', (req, res) => {
   const body = req.body;
   knex.insert({
-    employee   : body.employee,
-    hourperweek: body.hourperweek,
-    hourly     : body.hourly,
-    overtime   : body.overtime,
-    benefits   : body.benefits,
-    total      : body.total
+    id  : body.id,
+    pts : body.pts,
+    hourstotal    : body.hourstotal,
+    clinichours   : body.clinichours,
+    target   : body.target,
+    visitsperhour      : body.visitsperhour,
+    target2 : body.target2
 
-  }).into('paystubs').then(id => {
+  }).into('hoursportland').then(id => {
     console.log(id);
     return res.status(201).json({})
   }).catch(e => {
