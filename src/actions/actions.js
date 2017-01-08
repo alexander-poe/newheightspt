@@ -20,3 +20,4 @@ export const getPayStub = data => dispatch => {
 			console.log('error', err);
 		});
 };
+

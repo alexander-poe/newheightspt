@@ -39,6 +39,24 @@ app.get('/userdata', (req, res) => {
     return res.status(200).json({data})
   })
 })
+app.post('/userdata', (req, res) => {
+  const body = req.body;
+  knex.insert({
+    employee   : body.employee,
+    hourperweek: body.hourperweek,
+    hourly     : body.hourly,
+    overtime   : body.overtime,
+    benefits   : body.benefits,
+    total      : body.total
+
+  }).into('paystubs').then(id => {
+    console.log(id);
+    return res.status(201).json({})
+  }).catch(e => {
+    console.error(e);
+    res.sendStatus(500);
+  })
+});
 app.post('/me', stormpath.loginRequired, function (req, res) {
   function writeError(message) {
     res.status(400);

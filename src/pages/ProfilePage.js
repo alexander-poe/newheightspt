@@ -8,11 +8,17 @@ import Form from './Form.js';
 class ProfilePage extends React.Component {
   constructor(props) {
     super(props);
+    this.submitData = this.submitData.bind(this);
   }
 
   componentDidMount () {
     this.props.dispatch(actions.getPayStub());
     console.log('data', this.props);
+  }
+
+  submitData (e) {
+    e.preventDefault();
+    alert('hey');
   }
 
 
@@ -53,6 +59,26 @@ class ProfilePage extends React.Component {
             {eachColumn}
           </tbody>
         </table>
+        <form>
+          Employee:<br/>
+          <input type="text" name="firstname"/>
+          <br/>
+          Hourly:<br/>
+          <input type="text" name="lastname"/>
+           <br/>
+          Hours Per Week:<br/>
+          <input type="text" name="lastname"/>
+           <br/>
+          Benefits:<br/>
+          <input type="text" name="lastname"/>
+           <br/>
+          Overtime:<br/>
+          <input type="text" name="lastname"/>
+           <br/>
+          Total:<br/>
+          <input type="text" name="lastname"/>
+          <input type="submit" name="submit" onClick={this.submitData}/>
+        </form>
       </div>
     );
   }
