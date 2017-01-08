@@ -18,7 +18,8 @@ class ProfilePage extends React.Component {
 
   submitData (e) {
     e.preventDefault();
-    alert('hey');
+    this.props.dispatch(actions.postPortlandHours('jake', 2, 123, 0, 17, -33));
+    
   }
 
 
@@ -61,7 +62,7 @@ class ProfilePage extends React.Component {
             {eachColumn}
           </tbody>
         </table>
-        <form>
+        <form onSubmit={this.submitData}>
           PT:<br/>
           <select name="pts">
             <option value="Long">Long</option>
@@ -84,7 +85,7 @@ class ProfilePage extends React.Component {
            <br/>
           Target Results +/- :<br/>
           <input type="text" name="target2"/>
-          <input type="submit" name="submit" onClick={this.submitData}/>
+          <input type="submit" name="submit"/>
         </form>
       </div>
     );
