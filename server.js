@@ -42,13 +42,13 @@ app.get('/userdata', (req, res) => {
 app.post('/userdata', (req, res) => {
   const body = req.body;
   knex.insert({
-    id  : body.id,
-    pts : body.pts,
+    id            : body.id,
+    pts           : body.pts,
     hourstotal    : body.hourstotal,
     clinichours   : body.clinichours,
-    target   : body.target,
-    visitsperhour      : body.visitsperhour,
-    target2 : body.target2
+    target        : body.target,
+    visitsperhour : body.visitsperhour,
+    target2       : body.target2
 
   }).into('hoursportland').then(id => {
     console.log(id);
@@ -58,11 +58,32 @@ app.post('/userdata', (req, res) => {
     res.sendStatus(500);
   })
 });
+app.put('/userdata/:id', (req, res) => {
+  let id   = req.params.id;
+  let body = req.body;
+  knex('hoursportland').where({
+    id            : id
+  }).update({
+    hourstotal    : 12,
+    clinichours   : body.clinichours,
+    target        : body.target,
+    visitsperhour : body.visitsperhour,
+    target2       : body.target2
+  }).then(entry => {
+    console.log(entry);
+    return res.status(200).json({
+      message: '#' + id + ': updated'
+    }).catch(e => {
+      console.error(e);
+      res.sendStatus(500);
+    })
+  })
+})
 app.delete('/userdata/:id', (req, res) => {
   let id = req.params.id;
   if (!id) {
     return res.status(404).json({
-      message: 'id not found / deleted'
+      message: '#' + id + ': not found'
     })
   }
   knex('hoursportland').where({
@@ -70,7 +91,7 @@ app.delete('/userdata/:id', (req, res) => {
     }).del().then(row => {
       console.log(row);
       return res.status(200).json({
-    message: 'row id ' + id + ' deleted'
+    message: '#' + id + ': deleted'
     }).catch(e => {
       console.error(e);
       res.sendStatus(500);
