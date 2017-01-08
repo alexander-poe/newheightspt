@@ -58,6 +58,25 @@ app.post('/userdata', (req, res) => {
     res.sendStatus(500);
   })
 });
+app.delete('/userdata/:id', (req, res) => {
+  let id = req.params.id;
+  if (!id) {
+    return res.status(404).json({
+      message: 'id not found / deleted'
+    })
+  }
+  knex('hoursportland').where({
+    id: id
+    }).del().then(row => {
+      console.log(row);
+      return res.status(200).json({
+    message: 'row id ' + id + ' deleted'
+    }).catch(e => {
+      console.error(e);
+      res.sendStatus(500);
+    })
+  })
+})
 app.post('/me', stormpath.loginRequired, function (req, res) {
   function writeError(message) {
     res.status(400);

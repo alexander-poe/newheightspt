@@ -3,44 +3,57 @@ import DocumentTitle from 'react-document-title';
 import { connect } from 'react-redux';
 import { UserProfileForm } from 'react-stormpath';
 import * as actions from '../actions/actions';
-import Form from './Form.js';
+
 
 class ProfilePage extends React.Component {
   constructor(props) {
     super(props);
     this.submitData = this.submitData.bind(this);
+    this.deleteData = this.deleteData.bind(this);
   }
-
   componentDidMount () {
     this.props.dispatch(actions.getPayStub());
-    console.log('data', this.props);
   }
-
   submitData (e) {
     e.preventDefault();
-    this.props.dispatch(actions.postPortlandHours('jake', 2, 123, 0, 17, -33));
-    
+    this.props.dispatch(actions.postPortlandHours(this.pt.value, this.hoursTotal.value, this.clinicHours.value, this.target.value, this.actual.value, this.target2.value));
+    this.pt.value          = '';
+    this.hoursTotal.value  = '';
+    this.clinicHours.value = '';
+    this.target.value      = '';
+    this.actual.value      = '';
+    this.target2.value     = '';
+
   }
+  //idea is that when you click on datatable id it returns the id so you can dispatch a delete request.
+  //i know i can get value from input, can i get value from table?
+  deleteData(e) {
+    e.preventDefault();
+    let value = this.id.value;
+    alert(value);
 
-
+  }
   render() {
     const eachColumn      = this.props.employees.map((data, index) => {
-      console.log(data.employee)
-      const pts           = data.pts;
-      const hourstotal    = data.hourstotal;
-      const clinichours   = data.clinichours;
-      const target        = data.target;
-      const target2       = data.target2;
-      const visitsperhour = data.visitsperhour;
+      let id            = data.id;
+      let pts           = data.pts;
+      let hourstotal    = data.hourstotal;
+      let clinichours   = data.clinichours;
+      let target        = data.target;
+      let target2       = data.target2;
+      let visitsperhour = data.visitsperhour;
       
       return (
         <tr key={index}>
-          <td>{pts}</td>
-          <td>{hourstotal}</td>
-          <td>{clinichours}</td>
-          <td>{target}</td>
+          <td 
+          onClick={this.deleteData}
+          >{id}              </td>
+          <td>{pts}          </td>
+          <td>{hourstotal}   </td>
+          <td>{clinichours}  </td>
+          <td>{target}       </td>
           <td>{visitsperhour}</td>
-          <td>{target2}</td>
+          <td>{target2}      </td>
         </tr>
         );
     });
@@ -50,43 +63,73 @@ class ProfilePage extends React.Component {
         <table className="table">
           <thead>
             <tr>
-              <th>PT's</th>
-              <th>Hours Total</th>
-              <th>Clinic Hours</th>
-              <th>Target</th>
-              <th>Visits Per Hour</th>
-              <th>Target Results +/-</th>
+              <th> id                </th>
+              <th> PT's              </th>
+              <th> Hours Total       </th>
+              <th> Clinic Hours      </th>
+              <th> Target            </th>
+              <th> Visits Per Hour   </th>
+              <th> Target Results +/-</th>
             </tr>
           </thead>
           <tbody>
             {eachColumn}
           </tbody>
         </table>
-        <form onSubmit={this.submitData}>
-          PT:<br/>
-          <select name="pts">
-            <option value="Long">Long</option>
+        <form  id="form" onSubmit={this.submitData}>
+          <select name="pts" ref={input => this.pt = input}>
+           <option value="Long">Long</option>
             <option value="Gromont">Gromont</option>
             <option value="Tina">Tina</option>
             <option value="Liz">Liz</option>
           </select>
           <br/>
-          Hours Total:<br/>
-          <input type="text" name="hours_total"/>
-           <br/>
-          Clinic Hours:<br/>
-          <input type="text" name="clinc_hours"/>
-           <br/>
-          Target:<br/>
-          <input type="text" name="target"/>
-           <br/>
-          Actual Patients per Clinic Hour:<br/>
-          <input type="text" name="actual"/>
-           <br/>
-          Target Results +/- :<br/>
-          <input type="text" name="target2"/>
-          <input type="submit" name="submit"/>
-        </form>
+            Hours Total:
+          <br/>
+          <input
+          
+          type="text" 
+          name="hours_total" 
+          ref={input => this.hoursTotal = input}
+          />
+          <br/>
+            Clinic Hours:
+          <br/>
+          <input 
+          type="text" 
+          name="clinc_hours" 
+          ref={input => this.clinicHours = input}
+          />
+          <br/>
+            Target:
+          <br/>
+          <input 
+          type="text" 
+          name="target" 
+          ref={input => this.target = input}
+          />
+          <br/>
+            Actual Patients per Clinic Hour:
+          <br/>
+          <input           
+          type="text" 
+          name="actual" 
+          ref={input => this.actual = input}
+          />
+          <br/>
+            Target Results +/- :
+          <br/>
+          <input 
+          type="text" 
+          name="target2" 
+          ref={input => this.target2 = input}
+          />
+          <input 
+          type="submit" 
+          name="submit"
+          />
+        </form> 
+
       </div>
     );
   }
