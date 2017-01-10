@@ -43,8 +43,7 @@ app.get('/userdata', (req, res) => {
 app.post('/userdata', (req, res) => {
   const body = req.body;
   knex.insert({
-    id            : body.id,
-    pts           : body.pts,
+    pts           : body.pt,
     hourstotal    : body.hourstotal,
     clinichours   : body.clinichours,
     target        : body.target,
@@ -79,9 +78,10 @@ app.put('/userdata', (req, res) => {
     res.sendStatus(500);
   })
 })
-app.delete('/userdata/:id', (req, res) => {
-  let id = req.params.id;
-  if (!id) {
+app.delete('/userdata', (req, res) => {
+  const id = req.body.id;
+  console.log(id);
+  if (id) {
     return res.status(404).json({
       message: '#' + id + ': not found'
     })

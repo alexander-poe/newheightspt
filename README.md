@@ -18,6 +18,12 @@ Has ability to post all data.
 Has ability to edit all data.(maybe)
 Display data like billings, patients seen in a graph. 
 
+
+TODO
+(create action types for CRUD successes)
+put request needs a better way of editing
+
+
 DATABASE
 DROP TABLE if exists Paystubs (deleted old database)
 

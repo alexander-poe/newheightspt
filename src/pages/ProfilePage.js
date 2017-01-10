@@ -28,10 +28,9 @@ class ProfilePage extends React.Component {
   }
   editData(e) {
     e.preventDefault();
-    console.log('here', this.id.value)
-    console.log('here', this.pt.value)
     this.props.dispatch(actions.editPortlandHours(this.id.value, this.pt.value, this.hoursTotal.value, this.clinicHours.value, this.target.value, this.actual.value, this.target2.value));
     this.pt.value          = '';
+    this.id.value          = '';
     this.hoursTotal.value  = '';
     this.clinicHours.value = '';
     this.target.value      = '';
@@ -42,6 +41,8 @@ class ProfilePage extends React.Component {
   //i know i can get value from input, can i get value from table?
   deleteData(e) {
     e.preventDefault();
+    this.id.value          = '';
+    this.props.dispatch(actions.deletePortlandHours(this.id.value));
 
 
   }
@@ -89,10 +90,10 @@ class ProfilePage extends React.Component {
         </div>
         <form id="form" onSubmit={this.submitData}>
           <select name="pts" ref={input => this.pt = input}>
-            <option value="Long">Long</option>
+            <option value="Long">Long      </option>
             <option value="Gromont">Gromont</option>
-            <option value="Tina">Tina</option>
-            <option value="Liz">Liz</option>
+            <option value="Tina">Tina      </option>
+            <option value="Liz">Liz        </option>
           </select>
           <br/>
             Hours Total:

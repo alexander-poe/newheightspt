@@ -21,32 +21,58 @@ export const getPayStub = data => dispatch => {
 		});
 };
 
-export const editPortlandHours = (id, pt, hourstotal, clinichours, target, visitsperhour, target2) => dispatch => {
-	console.log(id, pt, hourstotal)
-	var array = [];
-	let id = id;
-	let pt = pt;
-	let hourstotal = hourstotal;
-	let clinichours = clinichours;
-	let target = target;
-	let visitsperhour = visitsperhour;
-	let target2 = target2;
-	console.log('id', id)
-	array.push(id, pt, hourstotal, clinichours, target, visitsperhour, target2);
-	console.log('array:' ,array);
-	//write four loop that will loop through array with conditional of blank value
-	//take parameters and check all values, if value is blank, leave, if contains something, assign to variable. 
-	//put values in fetch req 
+export const deletePortlandHours = id => dispatch => {
+	console.log(id);
+	return fetch(paystubs_url + '/' + id,
+	{
+		method  : "DELETE",
+		body    : JSON.stringify({
+			id  : id
+		}),
+		headers : {"Content-Type" : "application/json"}
+	}).then(res => {
+		return res.json()
+	}).then(res => {
+		console.log('message: delete succcess');
+	}).catch(err => {
+		console.log('error:', err);
+	});
+};	
 
-	//take returned values and place them into variable
-	var reqObj = {id: id, hourstotal: hourstotal};
-	console.log('reqObj:' , reqObj)
+export const editPortlandHours = (id, pt, hourstotal, clinichours, target, visitsperhour, target2) => dispatch => {
+    //if (feild is not being edited)
+	//a. have function like below that filters information, 
+	//then puts values into json object with corresponding keys
+
+	//b.have a better way to edit, when you click on a row, or enter and id
+	//the data from the row fills in onto the form
+	//that way you submit all feilds every single time and dont 
+	//have to deal with this on the action side. 
+	
+	// const isNotBlank = (value) => {
+	// 	if (value !== '') return value; 
+	// }
+	// const checksForValue = (array) => {
+	// 	var value = array.filter(isNBlank);
+	// 	return value
+	// }
+	// var inputs = [];
+	// inputs.push(id, pt, hourstotal, clinichours, target, visitsperhour, target2);
+	// console.log('array:' ,inputs);
+	// var reqObj = {id: id, hourstotal: hourstotal};
+	// console.log('reqObj:' , reqObj)
 	return fetch(paystubs_url,
 	{
 		method: "PUT",
-		body  : JSON.stringify(
-			reqObj
-		),
+		body  : JSON.stringify({
+					id,
+					pt,
+				hourstotal,
+				clinichours,
+				target,
+				visitsperhour,
+				target2 
+		}),
 		headers : {"Content-Type" : "application/json"}
 	}).then(res => {
 		if(res.status >= 300) {
@@ -60,12 +86,12 @@ export const editPortlandHours = (id, pt, hourstotal, clinichours, target, visit
 	});
 };
 
-export const postPortlandHours = (pts, hourstotal, clinichours, target, visitsperhour, target2) => dispatch => {
+export const postPortlandHours = (pt, hourstotal, clinichours, target, visitsperhour, target2) => dispatch => {
 	return fetch(paystubs_url,
 		{
 			method: "POST",
 			body  : JSON.stringify({
-				pts,
+				pt,
 				hourstotal,
 				clinichours,
 				target,
