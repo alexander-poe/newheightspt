@@ -140,9 +140,4 @@ app.on('stormpath.ready', function () {
   });
 });
 //============================== bootstrap 
-app.get('/css/bootstrap.min.css', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build/css/bootstrap.min.css'));
-});
-app.get('*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build/index.html'));
-});
+app.use(express.static('build'));

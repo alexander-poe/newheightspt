@@ -69,6 +69,7 @@ class ProfilePage extends React.Component {
     return (
       <div className="container">          
         <h1>Admin View</h1>
+        <div className="scroll">
         <table className="table">
           <thead>
             <tr>
@@ -85,6 +86,7 @@ class ProfilePage extends React.Component {
             {eachColumn}
           </tbody>
         </table>
+        </div>
         <form id="form" onSubmit={this.submitData}>
           <select name="pts" ref={input => this.pt = input}>
             <option value="Long">Long</option>
