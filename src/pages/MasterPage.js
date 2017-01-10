@@ -5,13 +5,7 @@ import DocumentTitle from 'react-document-title';
 import {connect} from 'react-redux';
 import Header from './Header';
 import * as actions from '../actions/actions';
-
 export class MasterPage extends React.Component {
-
-  // componentDidMount() {
-  //   this.props.dispatch(actions.getData())
-  // }
-
   render() {
     return (
       <DocumentTitle title='My React App'>
@@ -23,5 +17,4 @@ export class MasterPage extends React.Component {
     );
   }
 }
-
 export default connect()(MasterPage)

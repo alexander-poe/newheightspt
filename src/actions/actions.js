@@ -21,25 +21,60 @@ export const getPayStub = data => dispatch => {
 		});
 };
 
-// export const POST_PORTLAND_HOURS_SUCCESS = 'POST_PORTLAND_HOURS_SUCCESS';
-// export const postPortlandHoursSuccess = () => ({
-// 	type: 'POST_PORTLAND_HOURS_SUCCESS',
-// })
+export const editPortlandHours = (id, pt, hourstotal, clinichours, target, visitsperhour, target2) => dispatch => {
+	console.log(id, pt, hourstotal)
+	var array = [];
+	let id = id;
+	let pt = pt;
+	let hourstotal = hourstotal;
+	let clinichours = clinichours;
+	let target = target;
+	let visitsperhour = visitsperhour;
+	let target2 = target2;
+	console.log('id', id)
+	array.push(id, pt, hourstotal, clinichours, target, visitsperhour, target2);
+	console.log('array:' ,array);
+	//write four loop that will loop through array with conditional of blank value
+	//take parameters and check all values, if value is blank, leave, if contains something, assign to variable. 
+	//put values in fetch req 
+
+	//take returned values and place them into variable
+	var reqObj = {id: id, hourstotal: hourstotal};
+	console.log('reqObj:' , reqObj)
+	return fetch(paystubs_url,
+	{
+		method: "PUT",
+		body  : JSON.stringify(
+			reqObj
+		),
+		headers : {"Content-Type" : "application/json"}
+	}).then(res => {
+		if(res.status >= 300) {
+			throw new Error(res.statusText);
+		}
+		return res;
+	}).then(res => {
+		console.log('message: update success')
+	}).catch(err => {
+		console.log('error', err);
+	});
+};
+
 export const postPortlandHours = (pts, hourstotal, clinichours, target, visitsperhour, target2) => dispatch => {
 	return fetch(paystubs_url,
 		{
 			method: "POST",
-			body: JSON.stringify({
-				pts: pts,
-				hourstotal: hourstotal,
-				clinichours: clinichours,
-				target: target,
-				visitsperhour: visitsperhour,
-				target2: target2
+			body  : JSON.stringify({
+				pts,
+				hourstotal,
+				clinichours,
+				target,
+				visitsperhour,
+				target2      
 			}),
-			headers: {"Content-Type": "application/json"}
+			headers: {"Content-Type" : "application/json"}
 		}).then(res => {
-			if(!res.okay) {
+			if(res.status >= 300) {
 				throw new Error(res.statusText);
 			}
 			return res;

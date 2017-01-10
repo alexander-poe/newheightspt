@@ -10,6 +10,7 @@ class ProfilePage extends React.Component {
     super(props);
     this.submitData = this.submitData.bind(this);
     this.deleteData = this.deleteData.bind(this);
+    this.editData   = this.editData.bind(this);
   }
   componentDidMount () {
     this.props.dispatch(actions.getPayStub());
@@ -25,12 +26,23 @@ class ProfilePage extends React.Component {
     this.target2.value     = '';
 
   }
+  editData(e) {
+    e.preventDefault();
+    console.log('here', this.id.value)
+    console.log('here', this.pt.value)
+    this.props.dispatch(actions.editPortlandHours(this.id.value, this.pt.value, this.hoursTotal.value, this.clinicHours.value, this.target.value, this.actual.value, this.target2.value));
+    this.pt.value          = '';
+    this.hoursTotal.value  = '';
+    this.clinicHours.value = '';
+    this.target.value      = '';
+    this.actual.value      = '';
+    this.target2.value     = '';
+  }
   //idea is that when you click on datatable id it returns the id so you can dispatch a delete request.
   //i know i can get value from input, can i get value from table?
   deleteData(e) {
     e.preventDefault();
-    let value = this.id.value;
-    alert(value);
+
 
   }
   render() {
@@ -42,12 +54,9 @@ class ProfilePage extends React.Component {
       let target        = data.target;
       let target2       = data.target2;
       let visitsperhour = data.visitsperhour;
-      
       return (
         <tr key={index}>
-          <td 
-          onClick={this.deleteData}
-          >{id}              </td>
+          <td>{id}           </td>
           <td>{pts}          </td>
           <td>{hourstotal}   </td>
           <td>{clinichours}  </td>
@@ -76,9 +85,9 @@ class ProfilePage extends React.Component {
             {eachColumn}
           </tbody>
         </table>
-        <form  id="form" onSubmit={this.submitData}>
+        <form id="form" onSubmit={this.submitData}>
           <select name="pts" ref={input => this.pt = input}>
-           <option value="Long">Long</option>
+            <option value="Long">Long</option>
             <option value="Gromont">Gromont</option>
             <option value="Tina">Tina</option>
             <option value="Liz">Liz</option>
@@ -86,8 +95,7 @@ class ProfilePage extends React.Component {
           <br/>
             Hours Total:
           <br/>
-          <input
-          
+          <input        
           type="text" 
           name="hours_total" 
           ref={input => this.hoursTotal = input}
@@ -129,7 +137,26 @@ class ProfilePage extends React.Component {
           name="submit"
           />
         </form> 
-
+        <input
+          type="text"
+          name="id"
+          placeholder="column #id
+          ."
+          ref={input => this.id = input}
+        />
+        <input 
+         onClick={this.editData}
+         type="submit"
+         name="edit"
+         value="Edit"
+        />
+        <input 
+         onClick={this.deleteData}
+         type="submit"
+         name="delete"
+         value="Delete"
+        />
+        
       </div>
     );
   }

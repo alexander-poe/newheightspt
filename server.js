@@ -39,6 +39,7 @@ app.get('/userdata', (req, res) => {
     return res.status(200).json({data})
   })
 })
+//hits error block but works??
 app.post('/userdata', (req, res) => {
   const body = req.body;
   knex.insert({
@@ -58,25 +59,24 @@ app.post('/userdata', (req, res) => {
     res.sendStatus(500);
   })
 });
-app.put('/userdata/:id', (req, res) => {
-  let id   = req.params.id;
+app.put('/userdata', (req, res) => {
   let body = req.body;
+  console.log('server:' , body);
   knex('hoursportland').where({
-    id            : id
+    id            : body.id
   }).update({
-    hourstotal    : 12,
+    pts           : body.pt,
+    hourstotal    : body.hourstotal,
     clinichours   : body.clinichours,
     target        : body.target,
     visitsperhour : body.visitsperhour,
     target2       : body.target2
   }).then(entry => {
-    console.log(entry);
-    return res.status(200).json({
-      message: '#' + id + ': updated'
-    }).catch(e => {
-      console.error(e);
-      res.sendStatus(500);
-    })
+    console.log('here',  entry);
+    return res.status(200).json({message:"yay"})
+  }).catch(e => {
+    console.error(e);
+    res.sendStatus(500);
   })
 })
 app.delete('/userdata/:id', (req, res) => {
