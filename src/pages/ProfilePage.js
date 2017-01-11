@@ -3,7 +3,7 @@ import DocumentTitle from 'react-document-title';
 import { connect } from 'react-redux';
 import { UserProfileForm } from 'react-stormpath';
 import * as actions from '../actions/actions';
-
+import { Sparklines, SparklinesLine } from 'react-sparklines';
 
 class ProfilePage extends React.Component {
   constructor(props) {
@@ -88,7 +88,7 @@ class ProfilePage extends React.Component {
           </tbody>
         </table>
         </div>
-        <form id="form" onSubmit={this.submitData}>
+        <form className="form-horizontal" id="form" onSubmit={this.submitData}>
           <select name="pts" ref={input => this.pt = input}>
             <option value="Long">Long      </option>
             <option value="Gromont">Gromont</option>
@@ -159,6 +159,9 @@ class ProfilePage extends React.Component {
          name="delete"
          value="Delete"
         />
+        <Sparklines data={[5, 4, 5, 2, 10, 5, 20]}>
+          <SparklinesLine color="blue" />
+        </Sparklines>
         
       </div>
     );

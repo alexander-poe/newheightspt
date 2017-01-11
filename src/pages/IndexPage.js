@@ -10,7 +10,8 @@ export default class IndexPage extends React.Component {
         <hr />
         <div className="jumbotron">
           <p>
-            <strong>New Heights Physical Therapy</strong>
+            <strong>New Heights Physical Therapy
+            </strong>
           </p>
           <ol className="lead">
             <li><Link to="/register">Registration</Link></li>
