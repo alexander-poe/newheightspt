@@ -55,6 +55,7 @@ class ProfilePage extends React.Component {
       let target        = data.target;
       let target2       = data.target2;
       let visitsperhour = data.visitsperhour;
+
       return (
         <tr key={index}>
           <td>{id}           </td>
@@ -159,6 +160,9 @@ class ProfilePage extends React.Component {
          name="delete"
          value="Delete"
         />
+
+
+
         <Sparklines data={[5, 4, 5, 2, 10, 5, 20]}>
           <SparklinesLine color="blue" />
         </Sparklines>

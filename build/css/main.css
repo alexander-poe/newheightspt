@@ -3,3 +3,8 @@
     height: 300px;
     overflow: scroll;
 }
+
+.center {
+	float: left;
+	left: 10px;
+}

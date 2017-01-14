@@ -6,13 +6,9 @@ export default class IndexPage extends React.Component {
   render() {
     return (
       <div className="container">
-        <h2 className="text-center">Welcome!</h2>
+        <h2 className="text-center"><img src="./nhits.jpeg" height="500"/></h2>
         <hr />
         <div className="jumbotron">
-          <p>
-            <strong>New Heights Physical Therapy
-            </strong>
-          </p>
           <ol className="lead">
             <li><Link to="/register">Registration</Link></li>
             <li><LoginLink /></li>
