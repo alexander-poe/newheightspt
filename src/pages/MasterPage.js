@@ -8,12 +8,14 @@ import * as actions from '../actions/actions';
 export class MasterPage extends React.Component {
   render() {
     return (
+      <div className="main-container">
       <DocumentTitle title='My React App'>
-        <div className='MasterPage'>
+        <div>
           <Header />
           { this.props.children }
         </div>
       </DocumentTitle>
+      </div>
     );
   }
 }

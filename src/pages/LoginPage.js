@@ -6,15 +6,25 @@ export default class LoginPage extends React.Component {
   render() {
     return (
       <DocumentTitle title={`Login`}>
-        <div className="container">
-          <div className="row">
-            <div className="col-xs-12">
-              <h3>Login</h3>
-              <hr />
-            </div>
-          </div>
-          <LoginForm />
-        </div>
+       
+        <LoginForm>
+            <p>
+              <label htmlFor="username">Username or Email</label><br />
+              <input id="username" type="text" name="username" />
+            </p>
+            <p>
+              <label htmlFor="password">Password</label><br />
+              <input id="password" type="password" name="password" />
+            </p>
+            <p data-spIf="form.error">
+              <strong>Error:</strong><br />
+              <span data-spBind="form.errorMessage" />
+            </p>
+            <p>
+              <input type="submit" value="Login" />
+            </p>
+        </LoginForm>
+        
       </DocumentTitle>
     );
   }

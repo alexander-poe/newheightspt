@@ -5,6 +5,9 @@ import { UserProfileForm } from 'react-stormpath';
 import * as actions from '../actions/actions';
 import { Sparklines, SparklinesLine } from 'react-sparklines';
 
+
+ 
+
 class ProfilePage extends React.Component {
   constructor(props) {
     super(props);
@@ -89,84 +92,13 @@ class ProfilePage extends React.Component {
           </tbody>
         </table>
         </div>
-        <form className="form-horizontal" id="form" onSubmit={this.submitData}>
-          <select name="pts" ref={input => this.pt = input}>
-            <option value="Long">Long      </option>
-            <option value="Gromont">Gromont</option>
-            <option value="Tina">Tina      </option>
-            <option value="Liz">Liz        </option>
-          </select>
-          <br/>
-            Hours Total:
-          <br/>
-          <input        
-          type="text" 
-          name="hours_total" 
-          ref={input => this.hoursTotal = input}
-          />
-          <br/>
-            Clinic Hours:
-          <br/>
-          <input 
-          type="text" 
-          name="clinc_hours" 
-          ref={input => this.clinicHours = input}
-          />
-          <br/>
-            Target:
-          <br/>
-          <input 
-          type="text" 
-          name="target" 
-          ref={input => this.target = input}
-          />
-          <br/>
-            Actual Patients per Clinic Hour:
-          <br/>
-          <input           
-          type="text" 
-          name="actual" 
-          ref={input => this.actual = input}
-          />
-          <br/>
-            Target Results +/- :
-          <br/>
-          <input 
-          type="text" 
-          name="target2" 
-          ref={input => this.target2 = input}
-          />
-          <input 
-          type="submit" 
-          name="submit"
-          />
-        </form> 
-        <input
-          type="text"
-          name="id"
-          placeholder="column #id
-          ."
-          ref={input => this.id = input}
-        />
-        <input 
-         onClick={this.editData}
-         type="submit"
-         name="edit"
-         value="Edit"
-        />
-        <input 
-         onClick={this.deleteData}
-         type="submit"
-         name="delete"
-         value="Delete"
-        />
+     
 
-
-
-        <Sparklines data={[5, 4, 5, 2, 10, 5, 20]}>
-          <SparklinesLine color="blue" />
-        </Sparklines>
-        
+      
+          <Sparklines data={[5, 4, 5, 2, 10, 5, 20]}>
+            <SparklinesLine color="blue" />
+          </Sparklines>
+    
       </div>
     );
   }

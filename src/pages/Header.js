@@ -8,8 +8,8 @@ export default class Header extends React.Component {
       <nav className="navbar navbar-default navbar-static-top">
         <div className="container">
           <div id="navbar-collapse" className="collapse navbar-collapse">
-            <img className="center" src="./nhits.jpeg" height="40" width="40"/>
             <ul className="nav navbar-nav">
+              <li><img className="center" src="./nhits.jpeg" height="40" width="40"/></li>
               <li><Link to="/">Home</Link></li>
               <Authenticated>
                 <li>
