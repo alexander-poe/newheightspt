@@ -12,42 +12,12 @@ class ProfilePage extends React.Component {
   constructor(props) {
     super(props);
     this.submitData = this.submitData.bind(this);
-    this.deleteData = this.deleteData.bind(this);
-    this.editData   = this.editData.bind(this);
   }
   componentDidMount () {
     this.props.dispatch(actions.getPayStub());
   }
   submitData (e) {
     e.preventDefault();
-    this.props.dispatch(actions.postPortlandHours(this.pt.value, this.hoursTotal.value, this.clinicHours.value, this.target.value, this.actual.value, this.target2.value));
-    this.pt.value          = '';
-    this.hoursTotal.value  = '';
-    this.clinicHours.value = '';
-    this.target.value      = '';
-    this.actual.value      = '';
-    this.target2.value     = '';
-
-  }
-  editData(e) {
-    e.preventDefault();
-    this.props.dispatch(actions.editPortlandHours(this.id.value, this.pt.value, this.hoursTotal.value, this.clinicHours.value, this.target.value, this.actual.value, this.target2.value));
-    this.pt.value          = '';
-    this.id.value          = '';
-    this.hoursTotal.value  = '';
-    this.clinicHours.value = '';
-    this.target.value      = '';
-    this.actual.value      = '';
-    this.target2.value     = '';
-  }
-  //idea is that when you click on datatable id it returns the id so you can dispatch a delete request.
-  //i know i can get value from input, can i get value from table?
-  deleteData(e) {
-    e.preventDefault();
-    this.id.value          = '';
-    this.props.dispatch(actions.deletePortlandHours(this.id.value));
-
-
   }
   render() {
     const eachColumn      = this.props.employees.map((data, index) => {
@@ -92,9 +62,6 @@ class ProfilePage extends React.Component {
           </tbody>
         </table>
         </div>
-     
-
-      
           <Sparklines data={[5, 4, 5, 2, 10, 5, 20]}>
             <SparklinesLine color="blue" />
           </Sparklines>
