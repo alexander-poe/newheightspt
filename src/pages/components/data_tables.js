@@ -8,8 +8,7 @@ class DataTables extends React.Component {
 	}
 
 	render() {
-		var renderData;
-		if (this.props.graphstatus === 'employees') {
+		if (this.props.status === 'employees') {
 				const eachColumn = this.props.employees.map((data, index) => {
 			      let id = data.id;
 			      let pts = data.pts;
@@ -54,7 +53,7 @@ class DataTables extends React.Component {
 				      </div>    
 				    );    		
 		}
-		if (this.props.graphstatus === 'graph2') {
+		if (this.props.status === 'graph2') {
 			return (
 				const eachColumn = this.props.employees.map((data, index) => {
 			      let id = data.id;
@@ -101,7 +100,7 @@ class DataTables extends React.Component {
 				    ); 
 		}
 
-		if (this.props.graphstatus === 'graph3') {
+		if (this.props.status === 'graph3') {
 			return (
 				const eachColumn = this.props.employees.map((data, index) => {
 			      let id = data.id;
@@ -147,7 +146,7 @@ class DataTables extends React.Component {
 				      </div>    
 				    ); 
 		}
-		if (this.props.graphstatus === 'graph4') {
+		if (this.props.status === 'graph4') {
 			return (
 			return (
 				const eachColumn = this.props.employees.map((data, index) => {
@@ -199,7 +198,7 @@ class DataTables extends React.Component {
 //its value will be a 'string' or a number that this page will listen for to determine
 //which graph we are on. 
 const mapStateToProps = (state, props) => ({
-  graphstatus: state.graphstatus,
+  status: state.status,
   employees: state.employees,
   graph2: state.graph2,
   graph3: state.graph3,
