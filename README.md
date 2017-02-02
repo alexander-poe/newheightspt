@@ -6,7 +6,7 @@ Link: none
 
 A mvp for a phsyical therapy company looking to improve their data entry and retrieval. 
 
-Dislaimer: this version is NOT intended for production use. 
+Dislaimer: current version is NOT intended for production use. 
 
 ## Screenshots
 
