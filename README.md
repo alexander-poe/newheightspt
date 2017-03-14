@@ -1,12 +1,13 @@
 # New Heights PT Data Entry
+<<<<<<< HEAD
 
 Link: none
 
 ## Description
 
-A mvp for a phsyical therapy company looking to improve their data entry and retrieval. 
+A mvp for a phsyical therapy company looking to improve their data entry and retrieval.
 
-Dislaimer: this version is NOT intended for production use. 
+Dislaimer: this version is NOT intended for production use.
 
 ## Screenshots
 
@@ -106,7 +107,7 @@ Dislaimer: this version is NOT intended for production use.
 
 <h2>Employee Portal</h2>
 
-This is used to be a better approach then using excell and hand delievering letters to employees. 
+Link: none
 
 <h3>Employee logs on</h3>
 <li>Has access to their data.</li>
@@ -119,7 +120,7 @@ This is used to be a better approach then using excell and hand delievering lett
 <li>Has access to their data and those they manage.</li>
 <li>Has ability to post <b> only there own </b> data.</li>
 <li>Display data like patients per week in a graph but with the option to compare their employees. </li>
- 
+
 
 
 
@@ -129,16 +130,35 @@ This is used to be a better approach then using excell and hand delievering lett
 <li>Has ability to edit all data.(maybe)</li>
 <li>Display data like billings, patients seen in a graph. </li>
 
+## Description
+
+A mvp for a phsyical therapy company looking to improve their data entry and retrieval.
+
+Dislaimer: current version is NOT intended for production use.
 
 
+## Screenshots
 
-TODO
-(create action types for CRUD successes)
-put request needs a better way of editing
+### Homepage/Login
 
+![full page](/build/nhithomepage.png)
 
-DATABASE
-DROP TABLE if exists Paystubs (deleted old database)
+### Spaced Repetition Page
+
+![main page](/build/mainpage.png)
+
+## Tech Stack
+
+- DB: cloud-hosted psql with elephantsql.
+
+- Server: Node, Express, knex
+
+- Client: React, Redux, Thunk
+
+- Security: Stormpath Auth
+
+## DB Info
+
 
 CREATE TABLE IF NOT EXSIST HoursPortland (
 	id serial primary key,
