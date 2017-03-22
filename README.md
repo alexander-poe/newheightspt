@@ -10,7 +10,8 @@ Dislaimer: this version is NOT intended for production use.
 
 ## Screenshots
 
-### Homepage/Login
+
+![full page](/build/nhithomepage.png)
 
 ![full page](/build/mainpage.png)
 
@@ -44,13 +45,6 @@ Link: none
 A mvp for a phsyical therapy company looking to improve their data entry and retrieval.
 
 Dislaimer: current version is NOT intended for production use.
-
-
-## Screenshots
-
-### Homepage/Login
-
-![full page](/build/nhithomepage.png)
 
 ## Tech Stack
 
